@@ -1,8 +1,8 @@
-[
+
    {      
      "nom" : "Eddy Martin",
      "telephone" : "514-123-9834",
-     "courriel : "emartin@cmaisonneuve.qc.ca",
+     "courriel" : "emartin@cmaisonneuve.qc.ca",
       "id": 1    
    },
    {  
@@ -15,4 +15,3 @@
      "telephone" : "514-222-9233",
      "id": 3    
    }
-]

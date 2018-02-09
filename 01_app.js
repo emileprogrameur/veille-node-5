@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
@@ -8,7 +9,7 @@ app.get('/', function (req, res) {
         'utf8',
         (err, data) => {if (err) { return console.error(err);}
         	console.log( data );
-        	let resultat = JSON.parse(data);           
+        	let resultat = JSON.parse('[' + data + ']');           
   		res.render('gabarit.ejs', {adresses: resultat})  
   	});
 })
