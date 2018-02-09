@@ -1,8 +1,22 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
+const mongoClient = require ('mongodb').MongoClient;
+cont bodyParser = require ('body-parser');
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended: true}));
+
+var db // variable qui contiendra le lien sur la BD
+
+MongoClient.connect('mongodb://127.0.0.1:27017/ma_bd', (err, database) => {
+ if (err) return console.log(err)
+ db = database
+// lancement du serveur Express sur le port 8081
+ app.listen(8081, () => {
+ console.log('connexion à la BD et on écoute sur le port 8081')
+ })
+})
 
 app.get('/', function (req, res) {
    fs.readFile( __dirname + "/public/data/" + "membres.txt", 
