@@ -1,15 +1,15 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
-const mongoClient = require ('mongodb').MongoClient;
-cont bodyParser = require ('body-parser');
+const bodyParser= require('body-parser')
+const MongoClient = require('mongodb').MongoClient
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 
-var db // variable qui contiendra le lien sur la BD
+let db // variable qui contiendra le lien sur la BD
 
-MongoClient.connect('mongodb://127.0.0.1:27017/ma_bd', (err, database) => {
+MongoClient.connect('mongodb://127.0.0.1:27017/carnet_adresse', (err, database) => {
  if (err) return console.log(err)
  db = database
 // lancement du serveur Express sur le port 8081
@@ -19,11 +19,11 @@ MongoClient.connect('mongodb://127.0.0.1:27017/ma_bd', (err, database) => {
 })
 
 app.get('/', function (req, res) {
-   fs.readFile( __dirname + "/public/data/" + "membres.txt", 
-        'utf8',
-        (err, data) => {if (err) { return console.error(err);}
-        	console.log( data );
-        	let resultat = JSON.parse('[' + data + ']');           
+    let cursor = db.collection('adresse')
+                .find().toArray(function(err, resultat){
+ 			if (err) return console.log(err)
+ 		// transfert du contenu vers la vue index.ejs (renders)
+ 		// affiche le contenu de la BD          
   		res.render('gabarit.ejs', {adresses: resultat})  
   	});
 })
