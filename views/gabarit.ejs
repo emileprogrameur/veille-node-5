@@ -2,14 +2,7 @@
 <html lang="fr">
 	 <%- include('composants/head') %> 
 	<body>
-	 	<table class="tableau">
-		 	<% for(elm of adresses) {%>
-		 		<tr>
-			 		<% for(elem in elm) {%>
-			 			<td><%= elm[elem] %></td>
-			 		<%}%>
-		 		</tr>
-		 	<% } %>
-	 </table>
+	 <%- include('composants/main') %>
+	 <%- include('composants/footer') %> 
 	</body>
 </html>
