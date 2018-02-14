@@ -17,6 +17,20 @@ app.get('/', function (req, res) {
   })
 })
 
+app.get('/formulaire', function (req, res) {
+ console.log(__dirname);
+ res.render ('composants/formulaire.ejs')
+})
+
+app.post('/ajouter', (req, res) => {
+	db.collection('adresse').save(req.body, (err, result) => {
+ 		if (err) return console.log(err)
+ 		console.log('sauvegarder dans la BD')
+ 		res.redirect('/')
+ 	})
+})
+
+
 /*----------------------Connexion à MongoDB et au serveur Node.js-----------------------*/
 let db // variable qui contiendra le lien sur la BD
 MongoClient.connect('mongodb://127.0.0.1:27017/carnet_adresse', (err, database) => {

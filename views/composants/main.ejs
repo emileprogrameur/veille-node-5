@@ -1,5 +1,16 @@
 <table class="tableau">
+	<% let noLigne = 0 %>
+
 	<% for(elm of adresses) {%>
+		<% if (noLigne==0) { %>
+			<tr>
+				<% noLigne++ %>
+				<% for(elem in elm) {%>
+					<td><%= elem %></td>
+				<%}%>
+			</tr>
+		<% } %>
+
 		<tr>
 			<% for(elem in elm) {%>
 				<td><%= elm[elem] %></td>
